@@ -1,0 +1,33 @@
+.celda {
+    border-width: medium;
+    border-color: #000000;
+    border-style: solid;
+    padding: 35px;
+    align-items: center;
+}
+
+table {
+    margin-left: 30%;
+    margin-right: 30%;
+    align-items: center;
+}
+
+.botones {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imagen {
+    width: 35px;
+}
+
+.btn-selected {
+    background-color: #000000;
+}
+
+.celdaMarcada {
+    background-color: rgb(255, 0, 128)
+}

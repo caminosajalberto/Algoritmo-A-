@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Algoritmo A*</title>
+
+    <!-- CSS -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/index.css">
+
+
+</head>
+
+<body>
+    <table id="tablero">
+        <tr>
+            <td class="celda" id="0_0" data-fila="0" data-columna="0"></td>
+            <td class="celda" id="0_1" data-fila="0" data-columna="1"></td>
+            <td class="celda" id="0_2" data-fila="0" data-columna="2"></td>
+            <td class="celda" id="0_3" data-fila="0" data-columna="3"></td>
+            <td class="celda" id="0_4" data-fila="0" data-columna="4"></td>
+            <td class="celda" id="0_5" data-fila="0" data-columna="5"></td>
+            <td class="celda" id="0_6" data-fila="0" data-columna="6"></td>
+        </tr>
+        <tr>
+            <td class="celda" id="1_0" data-fila="1" data-columna="0"></td>
+            <td class="celda" id="1_1" data-fila="1" data-columna="1"></td>
+            <td class="celda" id="1_2" data-fila="1" data-columna="2"></td>
+            <td class="celda" id="1_3" data-fila="1" data-columna="3"></td>
+            <td class="celda" id="1_4" data-fila="1" data-columna="4"></td>
+            <td class="celda" id="1_5" data-fila="1" data-columna="5"></td>
+            <td class="celda" id="1_6" data-fila="1" data-columna="6"></td>
+        </tr>
+        <tr>
+            <td class="celda" id="2_0" data-fila="2" data-columna="0"></td>
+            <td class="celda" id="2_1" data-fila="2" data-columna="1"></td>
+            <td class="celda" id="2_2" data-fila="2" data-columna="2"></td>
+            <td class="celda" id="2_3" data-fila="2" data-columna="3"></td>
+            <td class="celda" id="2_4" data-fila="2" data-columna="4"></td>
+            <td class="celda" id="2_5" data-fila="2" data-columna="5"></td>
+            <td class="celda" id="2_6" data-fila="2" data-columna="6"></td>
+        </tr>
+        <tr>
+            <td class="celda" id="3_0" data-fila="3" data-columna="0"></td>
+            <td class="celda" id="3_1" data-fila="3" data-columna="1"></td>
+            <td class="celda" id="3_2" data-fila="3" data-columna="2"></td>
+            <td class="celda" id="3_3" data-fila="3" data-columna="3"></td>
+            <td class="celda" id="3_4" data-fila="3" data-columna="4"></td>
+            <td class="celda" id="3_5" data-fila="3" data-columna="5"></td>
+            <td class="celda" id="3_6" data-fila="3" data-columna="6"></td>
+        </tr>
+        <tr>
+            <td class="celda" id="4_0" data-fila="4" data-columna="0"></td>
+            <td class="celda" id="4_1" data-fila="4" data-columna="1"></td>
+            <td class="celda" id="4_2" data-fila="4" data-columna="2"></td>
+            <td class="celda" id="4_3" data-fila="4" data-columna="3"></td>
+            <td class="celda" id="4_4" data-fila="4" data-columna="4"></td>
+            <td class="celda" id="4_5" data-fila="4" data-columna="5"></td>
+            <td class="celda" id="4_6" data-fila="4" data-columna="6"></td>
+        </tr>
+        <tr>
+            <td class="celda" id="5_0" data-fila="5" data-columna="0"></td>
+            <td class="celda" id="5_1" data-fila="5" data-columna="1"></td>
+            <td class="celda" id="5_2" data-fila="5" data-columna="2"></td>
+            <td class="celda" id="5_3" data-fila="5" data-columna="3"></td>
+            <td class="celda" id="5_4" data-fila="5" data-columna="4"></td>
+            <td class="celda" id="5_5" data-fila="5" data-columna="5"></td>
+            <td class="celda" id="5_6" data-fila="5" data-columna="6"></td>
+        </tr>
+        <tr>
+            <td class="celda" id="6_0" data-fila="6" data-columna="0"></td>
+            <td class="celda" id="6_1" data-fila="6" data-columna="1"></td>
+            <td class="celda" id="6_2" data-fila="6" data-columna="2"></td>
+            <td class="celda" id="6_3" data-fila="6" data-columna="3"></td>
+            <td class="celda" id="6_4" data-fila="6" data-columna="4"></td>
+            <td class="celda" id="6_5" data-fila="6" data-columna="5"></td>
+            <td class="celda" id="6_6" data-fila="6" data-columna="6"></td>
+        </tr>
+    </table>
+
+    <div class="botones">
+        <button id="inicio" class="btn btn-primary">Marcar inicio</button>
+        <button id="fin" class="btn btn-warning">Marcar destino</button>
+        <button id="obstaculo" class="btn btn-danger">Marcar obstaculos</button>
+        <button id="reiniciar" class="btn btn-default">Reiniciar</button>
+        <button id="empezar" class="btn btn-success">Empezar simulacion</button>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+
+</body>
